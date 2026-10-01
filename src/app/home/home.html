@@ -1,0 +1,128 @@
+
+<main class="flex-grow pt-20">
+  <section class="relative min-h-[90vh] flex items-center overflow-hidden bg-[#0a0a0a]">
+<div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+  <div class="text-center max-w-4xl mx-auto">
+</div>
+  <app-title-description text="مرحباً بك في عدسة"></app-title-description>
+<h1 class="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight tracking-tight">اكتشف
+<span class="gradient-text">فن</span>
+<br>التصوير الفوتوغرافي
+<p class="text-xl md:text-2xl text-neutral-400 mb-10 max-w-2xl mx-auto leading-relaxed">انغمس في أسرار المحترفين ونصائح عملية لتطوير مهاراتك في التصوير.</p>
+    </h1>
+    <div class="flex flex-col sm:flex-row justify-center gap-4 mb-16">
+      <a class="btn-primary inline-flex items-center justify-center gap-2 group" href="">
+        <span>استكشف المقالات</span>
+      </a>
+      <a class="btn-secondary inline-flex items-center justify-center gap-2" href="/about" data-discover="true"></a>
+    </div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto">
+ <app-object-card
+title="+50"
+icon="fa-newspaper"
+description="مقالة "
+></app-object-card>
+
+
+  <app-object-card
+title="+10ألف"
+icon="fa-users"
+description="قارئ "
+></app-object-card>
+
+
+ <app-object-card
+title="4"
+icon="fa-folder-open"
+description=" تصنيفات"
+></app-object-card>
+
+
+ <app-object-card
+title="6"
+icon="fa-pen"
+description="كاتب "
+></app-object-card>
+
+
+</div>
+</div>
+  </section>
+
+  <section class="py-24 bg-[#0a0a0a] relative overflow-hidden border-t-2 border-gray-800">
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-4">
+  <div>
+   <app-title-description text="
+مميز"></app-title-description>
+    <h2 class=" text-white text-6xl font-bold">مقالات مختارة</h2>
+    <p class="max-w-lg text-[#728FA1] mt-4 text-xl">محتوى منتقى لبدء رحلة تعلمك</p>
+
+  </div>
+ <app-orange-title
+ text="عرض الكل"
+ link="../blog/blog.html"
+ ></app-orange-title>
+  </div>
+  <div class="flex flex-col gap-10">
+@for (post of data.posts; track post.id) {
+  @if (post.featured) {
+    <app-blog-card
+    [post]="post"
+    viewMode="list"
+    ></app-blog-card>
+  }
+}
+</div>
+  </div>
+</section>
+
+<section class="py-24 bg-[#111111] relative border-y border-[#262626]">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 ">
+  <div class="text-center mb-12">
+   <app-title-description text="التصنيفات"></app-title-description>
+<h2 class="text-5xl text-white">استكشف حسب الموضوع</h2>
+<p class="text-xl  text-[#728FA1] max-w-lg mx-auto my-4">اعثر على محتوى مصمم حسب اهتماماتك</p>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+
+@for (category of data.categories; track category.name) {
+  <app-category-card
+    [category]="category"
+  />
+}
+
+
+</div>
+
+</div>
+
+
+</section>
+
+
+<section class="py-24 bg-[#0a0a0a] relative overflow-hidden">
+<div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-4">
+<div>
+<app-title-description text="الأحدث"></app-title-description>
+<h2 class="section-title text-white">أحدث المقالات</h2>
+<p class="text-xl  text-[#728FA1] max-w-lg mx-auto my-4">محتوى جديد طازج من المطبعة</p>
+</div>
+
+<app-orange-title text="عرض جميع المقالات"></app-orange-title>
+</div>
+
+
+
+<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+@for (post of latestPosts; track post.id) {
+  <app-blog-card [post]="post" />
+}
+</div>
+</div>
+</section>
+</main>
+
+
+

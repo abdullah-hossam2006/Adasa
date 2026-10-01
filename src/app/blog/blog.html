@@ -1,0 +1,87 @@
+<main class="flex-grow pt-20">
+<div class="min-h-screen bg-[#0a0a0a]">
+<div class="relative py-20 overflow-hidden">
+
+<div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+  <app-title-description class="mx-auto" text="مدونتنا"></app-title-description>
+  <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6" >استكشف مقالاتنا</h1>
+  <p class="text-xl text-neutral-400 max-w-2xl mx-auto">اكتشف الدروس والرؤى وأفضل الممارسات للتطوير الحديث</p>
+</div>
+
+</div>
+
+<div class="sticky top-20 z-40 bg-[#0a0a0a]/90 backdrop-blur-xl border-b border-[#262626]">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+    <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+      <div class="relative w-full md:w-80">
+        <input placeholder="ابحث في المقالات..." class="input-dark w-full px-5 py-3 pr-12" type="text" [(ngModel)]="searchTerm">
+       <i class="fa-solid fa-magnifying-glass"></i>
+      </div>
+
+      <div class="flex flex-wrap justify-center gap-2">
+        <app-category-button
+  name="جميع المقالات"
+  [active]="selectedCategory === 'الكل'"
+  (categorySelected)="selectCategory('الكل')"
+/>
+
+@for (category of data.categories; track category.name) {
+  <app-category-button
+    [name]="category.name"
+    [active]="selectedCategory === category.name"
+      (categorySelected)="selectCategory(category.name)"
+  />
+}
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- the posts -->
+
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 scroll-mt-[146px]">
+
+  <!-- the header of the posts  -->
+
+<div class="mb-8 flex items-center justify-between">
+<p class="text-neutral-400">عرض
+<span class="font-bold text-white">  {{ filteredPosts.length }}</span>
+مقالات
+</p>
+<div class="flex items-center gap-2">
+  <div class="flex items-center bg-[#161616] border border-[#262626] rounded-xl p-1">
+<button (click)="viewMode = 'grid'" class="p-2 rounded-lg transition-all duration-300 bg-orange-500 text-white" title="عرض شبكي"><i class="fa-solid fa-grip"></i></button>
+<button (click)="viewMode = 'list'" class="p-2 rounded-lg transition-all duration-300 text-neutral-400 hover:text-white" title="عرض قائمة">
+  <i class="fa-solid fa-list"></i>
+</button>
+  </div>
+</div>
+</div>
+
+
+<div
+  [class]="
+    viewMode === 'grid'
+      ? 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'
+      : 'flex flex-col gap-6'
+  "
+>
+  @for (post of filteredPosts; track post.id) {
+    <app-blog-card [post]="post" [viewMode]="viewMode"> </app-blog-card>
+  }
+</div>
+</div>
+
+
+</div>
+
+
+
+
+</main>
+
+
+
+
+
+

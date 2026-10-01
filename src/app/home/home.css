@@ -1,0 +1,6 @@
+@reference "../../styles.css";
+
+.home-card{
+  @apply  p-4 hover:scale-105 transition-transform duration-300 text-center
+
+}
